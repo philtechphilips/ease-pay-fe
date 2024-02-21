@@ -27,7 +27,7 @@ const Navbar = () => {
                 </ul>
 
                 <i className="ri-menu-2-fill text-white text-3xl md:hidden flex" onClick={toggleNavBar}></i>
-                <Link href="/create-account" className="text-white font-[Urbanist] hidden md:flex bg-[#006FEE] px-6 py-3 rounded-md">Create Account</Link>
+                <Link href="/create-account" className="text-white font-[Urbanist] hidden md:flex bg-[#006FEE] px-6 py-3 rounded-md">Get Started</Link>
             </div>
 
             {/* Mobile Menu */}
@@ -44,7 +44,7 @@ const Navbar = () => {
                     <li className="text-white text-center text-2xl hover:text-[#006FEE] font-[Urbanist]"><Link href="/">About Us</Link></li>
                     <li className="text-white text-center text-2xl hover:text-[#006FEE] font-[Urbanist]"><Link href="/">Faqs</Link></li>
                     <li className="text-white text-center text-2xl hover:text-[#006FEE] font-[Urbanist]"><Link href="/">Contact Us</Link></li>
-                    <li>  <Link href="/create-account" className="text-white text-2xl font-[Urbanist] bg-[#006FEE] px-10 py-4 rounded-md">Create Account</Link></li>
+                    <li>  <Link href="/create-account" className="text-white text-2xl font-[Urbanist] bg-[#006FEE] px-10 py-4 rounded-md">Get Started</Link></li>
                 </ul>
             </div>
             {/* Mobile Menu */}
