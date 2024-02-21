@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Provider } from "react-redux";
+import { store } from "../store/"
 
 export const metadata: Metadata = {
   title: "Ease Pay - Invoice Generator",
@@ -14,11 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <Provider store={store}>
     <html lang="en">
       <body>
         <Navbar />
         {children}
       </body>
     </html>
+    </Provider>
   );
 }
