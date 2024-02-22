@@ -18,7 +18,7 @@ const page = () => {
                     <p onClick={() => handleFormState("sign-up")} className={`text-gray-500 cursor-pointer font-[Gilroy-Regular] font-semibold md:text-md text-sm px-10 ${formState === 'sign-up' ? 'bg-[#006FEE] text-white rounded-full py-4 px-10' : 'px-10'}`}>Create Account</p>
                     <p onClick={() => handleFormState("sign-in")} className={`text-gray-500 cursor-pointer font-[Gilroy-Regular] font-semibold md:text-md text-sm px-10 ${formState === 'sign-in' ? 'bg-[#006FEE] text-white rounded-full py-4' : 'px-10'}`}>Sign In</p>
                 </div>
-
+                
                 {formState === 'sign-up' && (
                     <CreateAccount />
                 )}

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import { Provider } from "react-redux";
-import { store } from "../store/"
+import { ReduxProvider } from "@/redux/provider";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export const metadata: Metadata = {
   title: "Ease Pay - Invoice Generator",
@@ -15,13 +16,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Provider store={store}>
     <html lang="en">
       <body>
         <Navbar />
-        {children}
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
       </body>
     </html>
-    </Provider>
   );
 }

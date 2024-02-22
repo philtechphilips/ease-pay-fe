@@ -1,82 +1,96 @@
 "use client";
+import { register, reset } from '@/features/auth/authSlice';
+import { AppDispatch } from '@/store/store';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 const CreateAccount = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
+    const [successMessage, setSuccessMessage] = useState("");
 
-    const { user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth)
+    const { user, isLoading, isError, isSuccess, message } = useSelector((state: any) => state.auth)
+    console.log(isLoading)
 
     const [formData, setFormData] = useState({
-        name: '',
+        full_name: '',
+        username: '',
         email: '',
         password: '',
-        password2: ''
+        phone: ''
     });
 
-    const { name, email, password, password2 } = formData;
+    const { full_name, email, password, username, phone } = formData;
 
     useEffect(() => {
-        if (isError){
+        if (isError) {
             toast.error(message);
         }
 
-        if (isSuccess || user){
-            // navigate("/");
+        if (isSuccess) {
+            toast.success(message);
+            setFormData({
+                full_name: '',
+                username: '',
+                email: '',
+                password: '',
+                phone: ''
+            })
         }
 
         dispatch(reset())
     }, [user, isError, isLoading, isSuccess, message, dispatch]);
-    const onChange = (e) => { 
+    const onChange = (e: any) => {
         setFormData((prevState) => ({
             ...prevState,
-            [e.target.name] : e.target.value,
+            [e.target.name]: e.target.value,
         }))
     };
 
-    const onSubmit = (e) => { 
+    const onSubmit = (e: any) => {
         e.preventDefault();
-        if (password !== password2){
-            toast.error("Passwords do not match")
-        }else{
-            const userData = {
-                name, email, password
-            }
-
-            dispatch(register(userData))
+        const userData = {
+            full_name, email, password, username, phone
         }
+        dispatch(register(userData))
     };
     return (
         <div>
-            <form className="mt-8 flex flex-col gap-5">
+            <form className="mt-8 flex flex-col gap-5" onSubmit={onSubmit}>
                 <div className="flex flex-col gap-2">
                     <label className="font-[Gilroy-Regular] font-bold">Full Name:</label>
-                    <input type="text" className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter Your Full Name"></input>
+                    <input type="text" id="name"
+                        name="full_name"
+                        value={full_name} onChange={onChange} className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter Your Full Name"></input>
                 </div>
 
                 <div className="flex flex-col gap-2">
                     <label className="font-[Gilroy-Regular] font-bold">Email Address:</label>
-                    <input type="email" className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter Your Email Address"></input>
+                    <input type="email" name="email"
+                        value={email} onChange={onChange} className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter Your Email Address"></input>
                 </div>
 
                 <div className="flex flex-col gap-2">
                     <label className="font-[Gilroy-Regular] font-bold">Username:</label>
-                    <input type="text" className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter a Username"></input>
+                    <input type="text" name="username"
+                        value={username} onChange={onChange} className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter a Username"></input>
                 </div>
 
                 <div className="flex flex-col gap-2">
                     <label className="font-[Gilroy-Regular] font-bold">Phone:</label>
-                    <input type="phone" className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter Your Phone Number"></input>
+                    <input name="phone"
+                        value={phone} onChange={onChange} type="phone" className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter Your Phone Number"></input>
                 </div>
 
                 <div className="flex flex-col gap-2">
                     <label className="font-[Gilroy-Regular] font-bold">Password:</label>
-                    <input type="password" className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter Your Password"></input>
+                    <input type="password" name="password"
+                        value={password} onChange={onChange} className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter Your Password"></input>
                 </div>
 
-                <button className="bg-[#006FEE] font-[Gilroy-Regular] font-bold rounded-lg py-[18px] text-white text-xl">Create Account</button>
+                <button disabled={isLoading} className="bg-[#006FEE] font-[Gilroy-Regular] font-bold rounded-lg py-[18px] text-white text-xl">{isLoading ? "Submitting.." : "Create Account"}</button>
             </form>
+            <ToastContainer />
         </div>
     )
 }
