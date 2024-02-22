@@ -1,12 +1,23 @@
 "use client"
+import { logout, reset } from "@/features/auth/authSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import 'remixicon/fonts/remixicon.css';
 
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { user } = useSelector((state: any) => state.auth);
+    const [userState, setUserState] = useState();
+    const dispatch = useDispatch();
+    const router = useRouter();
+
+    useEffect(() => {
+        setUserState(user);
+    }, [user])
 
     const toggleNavBar = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -27,7 +38,12 @@ const Navbar = () => {
                 </ul>
 
                 <i className="ri-menu-2-fill text-white text-3xl md:hidden flex" onClick={toggleNavBar}></i>
-                <Link href="/create-account" className="text-white font-[Urbanist] hidden md:flex bg-[#006FEE] px-6 py-3 rounded-md">Get Started</Link>
+                {userState ? (
+                    <Link href="/dashboard" className="text-white font-[Urbanist] hidden md:flex bg-[#006FEE] px-6 py-3 rounded-md">Dashboard</Link>
+                ) : (
+                    <Link href="/create-account" className="text-white font-[Urbanist] hidden md:flex bg-[#006FEE] px-6 py-3 rounded-md">Get Started</Link>
+                )}
+
             </div>
 
             {/* Mobile Menu */}
@@ -49,9 +65,6 @@ const Navbar = () => {
             </div>
             {/* Mobile Menu */}
         </>
-
-
-
     )
 }
 

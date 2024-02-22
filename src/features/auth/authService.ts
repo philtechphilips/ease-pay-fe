@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 
 interface UserData {
-
+ username: string,
+ password: string
 }
 
 const API_URL = 'http://localhost:8000';
@@ -16,7 +17,7 @@ const register = async (userData: UserData): Promise<any> => {
 };
 
 const login = async (userData: UserData): Promise<any> => {
-    const response: AxiosResponse<any> = await axios.post(API_URL + '/login', userData);
+    const response: AxiosResponse<any> = await axios.post(API_URL + '/auth/login', userData);
 
     if (response.data) {
         if (typeof window !== 'undefined') {

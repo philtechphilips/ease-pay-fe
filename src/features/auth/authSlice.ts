@@ -9,7 +9,12 @@ interface User {
   phone: string
 }
 
-const user: User | null = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem("user") || "{}") as User : null;
+interface LoginUser {
+    username: string,
+    password: string
+  }
+
+const user: any = typeof window !== 'undefined' && JSON.parse(localStorage.getItem("user"));
 
 interface InitialState {
   user: User | null;
@@ -47,7 +52,7 @@ export const register = createAsyncThunk('auth/register', async (user: User, thu
   }
 });
 
-export const login = createAsyncThunk('auth/login', async (user: User, thunkApi) => {
+export const login = createAsyncThunk('auth/login', async (user: LoginUser, thunkApi) => {
   try {
     return await authService.login(user);
   } catch (error: any) {

@@ -1,13 +1,14 @@
 "use client";
 import { register, reset } from '@/features/auth/authSlice';
 import { AppDispatch } from '@/store/store';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast } from "react-toastify";
 
 const CreateAccount = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const [successMessage, setSuccessMessage] = useState("");
+    const router = useRouter();
 
     const { user, isLoading, isError, isSuccess, message } = useSelector((state: any) => state.auth)
     console.log(isLoading)
@@ -36,6 +37,10 @@ const CreateAccount = () => {
                 password: '',
                 phone: ''
             })
+        }
+
+        if(user){
+            router.push("/");
         }
 
         dispatch(reset())
