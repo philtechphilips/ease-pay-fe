@@ -38,3 +38,7 @@
   border-radius: 9999px; 
   padding: 10px 20px; 
 }
+
+.svg:hover {
+  stroke: #0c0c0c;
+}

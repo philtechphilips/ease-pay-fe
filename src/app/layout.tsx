@@ -22,11 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ReduxProvider>
-          <Sidebar />
-          <NavBar />
           {children}
-
-          <Footer />
         </ReduxProvider>
       </body>
     </html>
