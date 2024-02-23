@@ -3,6 +3,9 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ReduxProvider } from "@/redux/provider";
 import "react-toastify/dist/ReactToastify.css";
+import Sidebar from "@/components/dashboard/Sidebar";
+import NavBar from "@/components/dashboard/NavBar";
+import Footer from "@/components/dashboard/Footer";
 
 
 export const metadata: Metadata = {
@@ -19,8 +22,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ReduxProvider>
-        <Navbar />
+          <Sidebar />
+          <NavBar />
           {children}
+
+          <Footer />
         </ReduxProvider>
       </body>
     </html>
