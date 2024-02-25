@@ -26,9 +26,9 @@ const Navbar = () => {
     return (
         <>
             <div className="bg-[#080613] py-5 md:px-24 px-5 flex items-center justify-between">
-                <Link href="/">
-                    <Image src="https://www.easepay.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FeasepayLogo.e0bef468.png&w=384&q=75" alt="logo" width={150} height={100} />
-                </Link>
+                <Link href="/" className="rounded-full w-10 h-10 bg-[#006FFE] flex items-center justify-center">
+                    <Image src="/easepay.png" alt="logo" width={20} height={20} />
+                </Link> 
 
                 <ul className="md:flex gap-16 hidden">
                     <li className="text-white hover:text-[#006FEE] font-[Urbanist]"><Link href="/">Home</Link></li>
