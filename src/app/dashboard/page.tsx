@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Dashboard() {
   return (
-    <div className="w-full px-10 py-5 gap-3 bg-[#F7F8FA] h-screen">
-      <div className="flex gap-3 w-full">
+    <div className="w-full md:px-10 px-5 md:py-5 pt-5 pb-20 gap-3 bg-[#F7F8FA] min-h-screen">
+      <div className="flex md:flex-row flex-col gap-3 pb-20 w-full">
           <div className="border border-[#d2d3d4] rounded-lg px-5 py-6 flex flex-col gap-2">
             <div className="border border-[#d2d3d4] h-10 w-10 rounded-full flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#006FFE" className="w-6 h-6">
@@ -24,6 +24,7 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
+
           <div className="border border-[#d2d3d4] rounded-lg px-5 py-6 flex flex-col gap-2">
             <div className="border border-[#d2d3d4] h-10 w-10 rounded-full flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#006FFE" className="w-6 h-6">
@@ -44,6 +45,7 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
+
           <div className="border border-[#d2d3d4] rounded-lg px-5 py-6 flex flex-col gap-2">
             <div className="border border-[#d2d3d4] h-10 w-10 rounded-full flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#006FFE" className="w-6 h-6">

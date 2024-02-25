@@ -1,8 +1,20 @@
+"use client"
+import { setOpen } from '@/features/sidebar/sideBarSlice';
+import { RootState } from '@/store/store';
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
 const NavBar = () => {
+  const openn = useSelector((state: RootState) => state.open.open);
+  const dispatch = useDispatch();
+  const handleToggle = () => {
+    dispatch(setOpen(!openn));
+  };
+
   return (
     <div className='bg-[#F7F8FA] border-b border-[#d2d3d4] w-full flex items-center justify-between  h-28 px-5 md:px-10'>
+      <i className="ri-arrow-right-s-line text-4xl cursor-pointer" onClick={handleToggle}></i>
+
       <div>
         <h1 className='font-[Gilroy] text-xl'>Dashboard</h1>
       </div>
