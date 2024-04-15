@@ -6,7 +6,9 @@ interface User {
   email: string,
   full_name: string,
   password: string,
-  phone: string
+  phone: string,
+  companyName: string,
+  companyLogo: string
 }
 
 interface LoginUser {

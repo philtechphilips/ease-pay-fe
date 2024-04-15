@@ -5,7 +5,7 @@ interface UserData {
  password: string
 }
 
-const API_URL = 'http://localhost:8000';
+const API_URL = "http://localhost:8000";
 
 const register = async (userData: UserData): Promise<any> => {
     try {
