@@ -18,7 +18,7 @@ const Sidebar = () => {
   return (
     <>
     {openn && (
-      <div className='bg-[#F7F8FA] h-screen border-r border-[#d2d3d4] w-20 flex flex-col gap-8 fixed bottom-0 left-0 py-12  items-center'>
+      <div className='bg-[#F7F8FA] h-screen border-r border-[#d2d3d4] w-20 flex z-[1000] flex-col gap-8 fixed bottom-0 left-0 py-12  items-center'>
       <div className='md:hidden flex items-center justify-center mt-16 cursor-pointer' onClick={handleToggle}>
         {openn ? (
 

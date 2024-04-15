@@ -49,8 +49,8 @@ const Navbar = () => {
             {/* Mobile Menu */}
             <div className={`bg-[#080613] h-screen fixed top-0 right-0 w-screen pt-5 pb-10 px-5 md:hidden items-center gap-24 flex flex-col transition-transform ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full transition-transform'}`}>
                 <div className="flex items-center justify-between w-full">
-                    <Link href="/">
-                        <Image src="https://www.easepay.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FeasepayLogo.e0bef468.png&w=384&q=75" alt="logo" width={150} height={100} />
+                    <Link href="/" className=" w-12 h-12 flex items-center justify-center bg-[#006FFE] rounded-full">
+                        <Image src="/easepay.png" alt="logo" width={30} height={30} />
                     </Link>
 
                     <i className="ri-close-line text-white text-4xl" onClick={toggleNavBar}></i>

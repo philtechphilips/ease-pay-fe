@@ -13,7 +13,7 @@ const NavBar = () => {
 
   return (
     <div className='bg-[#F7F8FA] border-b border-[#d2d3d4] w-full flex items-center justify-between  h-28 px-5 md:px-10'>
-      <i className="ri-arrow-right-s-line text-4xl cursor-pointer" onClick={handleToggle}></i>
+      <i className="md:hidden flex ri-arrow-right-s-line text-4xl cursor-pointer" onClick={handleToggle}></i>
 
       <div>
         <h1 className='font-[Gilroy] text-xl'>Dashboard</h1>

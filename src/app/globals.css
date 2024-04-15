@@ -23,6 +23,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Gilroy-Medium';
+  src: local('Gilroy-Medium'), local('Gilroy-Medium'),
+      url('/fonts/Gilroy-Medium.woff2') format('woff2'),
+      url('/fonts/Gilroy-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
