@@ -1,5 +1,5 @@
 "use client";
-import { register, reset } from '@/features/auth/authSlice';
+import { register } from '@/features/auth/authAction';
 import { AppDispatch } from '@/store/store';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -12,17 +12,16 @@ const CreateAccount = () => {
     const router = useRouter();
 
     const { user, isLoading, isError, isSuccess, message } = useSelector((state: any) => state.auth)
-    console.log(isLoading)
 
     const [formData, setFormData] = useState({
-        full_name: '',
+        fullName: '',
         username: '',
         email: '',
         password: '',
         phone: ''
     });
 
-    const { full_name, email, password, username, phone } = formData;
+    const { fullName, email, password, username, phone } = formData;
 
     useEffect(() => {
         if (isError) {
@@ -32,20 +31,14 @@ const CreateAccount = () => {
         if (isSuccess) {
             toast.success(message);
             setFormData({
-                full_name: '',
+                fullName: '',
                 username: '',
                 email: '',
                 password: '',
                 phone: ''
             })
         }
-
-        if(user){
-            router.push("/");
-        }
-
-        dispatch(reset())
-    }, [user, isError, isLoading, isSuccess, message, dispatch]);
+    }, [isError, isLoading, isSuccess, message, dispatch]);
     const onChange = (e: any) => {
         setFormData((prevState) => ({
             ...prevState,
@@ -56,7 +49,7 @@ const CreateAccount = () => {
     const onSubmit = (e: any) => {
         e.preventDefault();
         const userData = {
-            full_name, email, password, username, phone
+            fullName, email, password, username, phone
         }
         dispatch(register(userData))
     };
@@ -66,8 +59,8 @@ const CreateAccount = () => {
                 <div className="flex flex-col gap-2">
                     <label className="font-[Gilroy-Regular] font-bold">Full Name:</label>
                     <input type="text" id="name"
-                        name="full_name"
-                        value={full_name} onChange={onChange} className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter Your Full Name"></input>
+                        name="fullName"
+                        value={fullName} onChange={onChange} className="outline-none py-4 px-2 border-2 border-gray-700 focus:border-[#006FEE] focus:border  rounded-md" placeholder="Enter Your Full Name"></input>
                 </div>
 
                 <div className="flex flex-col gap-2">

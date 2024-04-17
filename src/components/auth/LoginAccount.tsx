@@ -1,8 +1,8 @@
-import { login, reset } from '@/features/auth/authSlice';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { login } from '@/features/auth/authAction';
 
 const LoginAccount = () => {
     const dispatch = useDispatch();
@@ -10,15 +10,14 @@ const LoginAccount = () => {
 
     const { user, isLoading, isError, isSuccess, message} = useSelector((state: any) => state.auth)
 
-    useEffect(() => {
-        if (isError){
-            toast.error(message);
-        }
-        if (isSuccess || user ){
-             router.push("/");
-        }
-        dispatch(reset())
-    }, [user, isError, isLoading, isSuccess, message, dispatch]);
+    // useEffect(() => {
+    //     if (isError){
+    //         toast.error(message);
+    //     }
+    //     if (isSuccess || user ){
+    //          router.push("/");
+    //     }
+    // }, [user, isError, isLoading, isSuccess, message]);
 
     const [formData, setFormData] = useState({
         username: '',
