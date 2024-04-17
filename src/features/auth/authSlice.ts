@@ -1,22 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
+import toast from "react-hot-toast";
+import { login, logout, register } from "./authAction";
 
 interface User {
   username: string,
   email: string,
-  full_name: string,
+  fullName: string,
   password: string,
   phone: string,
   companyName: string,
   companyLogo: string
 }
 
-interface LoginUser {
-    username: string,
-    password: string
-  }
+type RegisterUser = Pick<User, 'email' | 'username' | 'fullName' | 'password' | 'phone'>
 
-const user: any = typeof window !== 'undefined' && JSON.parse(localStorage.getItem("user"));
+interface LoginUser {
+  username: string,
+  password: string
+}
 
 interface InitialState {
   user: User | null;
@@ -27,59 +29,20 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  user: user,
+  user: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: ''
 };
 
-export const register = createAsyncThunk('auth/register', async (user: User, thunkApi) => {
-  try {
-    return await authService.register(user);
-  } catch (error: any) {
-    const message = (() => {
-        if (error.response && error.response.data && error.response.data.message) {
-          const errorMessage = error.response.data.message;
-          if (Array.isArray(errorMessage)) {
-            return errorMessage[0];
-          } else if (typeof errorMessage === 'string') {
-            return errorMessage; 
-          }
-        }
-        return error.message || error.toString();
-      })();
-      
-    return thunkApi.rejectWithValue(message);
-  }
-});
 
-export const login = createAsyncThunk('auth/login', async (user: LoginUser, thunkApi) => {
-  try {
-    return await authService.login(user);
-  } catch (error: any) {
-    console.log(error);
-    const message = (error.response && error.response.data && error.response.message) || error.message || error.toString();
-    return thunkApi.rejectWithValue(message);
-  }
-});
-
-export const logout = createAsyncThunk('auth/logout', async () => {
-  authService.logout();
-});
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    reset: (state) => {
-      state.isError = false;
-      state.isLoading = false;
-      state.isSuccess = false;
-      state.message = "";
-    }
-  },
-  extraReducers: (builder) => { 
+  reducers: {},
+  extraReducers: (builder) => {
     builder
       .addCase(register.pending, (state) => {
         state.isLoading = true;
@@ -95,18 +58,27 @@ export const authSlice = createSlice({
         state.message = action.payload;
         state.user = null;
       })
-      .addCase(logout.fulfilled, (state) => {
-        state.user = null;
+      .addCase(logout.fulfilled, state => {
+        state.user = null
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
+        toast.success('Login successful', {
+          position: "top-right",
+        });
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
+        localStorage.setItem('token', action.payload.token);
       })
       .addCase(login.rejected, (state, action) => {
+        toast.error('Unsuccessful login', {
+          position: "top-right",
+        });
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -115,5 +87,5 @@ export const authSlice = createSlice({
   }
 });
 
-export const { reset } = authSlice.actions;
+
 export default authSlice.reducer;

@@ -1,8 +1,8 @@
-import { login, reset } from '@/features/auth/authSlice';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { login } from '@/features/auth/authAction';
 
 const LoginAccount = () => {
     const dispatch = useDispatch();
@@ -17,8 +17,7 @@ const LoginAccount = () => {
         if (isSuccess || user ){
              router.push("/");
         }
-        dispatch(reset())
-    }, [user, isError, isLoading, isSuccess, message, dispatch]);
+    }, [user, isError, isLoading, isSuccess, message]);
 
     const [formData, setFormData] = useState({
         username: '',
