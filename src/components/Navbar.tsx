@@ -1,5 +1,4 @@
 "use client"
-import { logout, reset } from "@/features/auth/authSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -15,6 +14,8 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const router = useRouter();
 
+    console.log(user)
+
     useEffect(() => {
         setUserState(user);
     }, [user])
@@ -25,7 +26,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="bg-[#080613] py-5 md:px-24 px-5 flex items-center justify-between">
+            <div className="bg-[#001433] py-5 md:px-24 px-5 flex items-center justify-between">
                 <Link href="/" className="rounded-full w-10 h-10 bg-[#006FFE] flex items-center justify-center">
                     <Image src="/easepay.png" alt="logo" width={20} height={20} />
                 </Link> 

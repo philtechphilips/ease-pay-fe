@@ -12,7 +12,6 @@ const CreateAccount = () => {
     const router = useRouter();
 
     const { user, isLoading, isError, isSuccess, message } = useSelector((state: any) => state.auth)
-    console.log(isLoading)
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -39,11 +38,7 @@ const CreateAccount = () => {
                 phone: ''
             })
         }
-
-        if (user) {
-            router.push("/");
-        }
-    }, [user, isError, isLoading, isSuccess, message, dispatch]);
+    }, [isError, isLoading, isSuccess, message, dispatch]);
     const onChange = (e: any) => {
         setFormData((prevState) => ({
             ...prevState,

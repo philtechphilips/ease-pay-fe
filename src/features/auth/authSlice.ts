@@ -10,7 +10,8 @@ interface User {
   password: string,
   phone: string,
   companyName: string,
-  companyLogo: string
+  companyLogo: string,
+  token: string
 }
 
 type RegisterUser = Pick<User, 'email' | 'username' | 'fullName' | 'password' | 'phone'>
@@ -21,7 +22,7 @@ interface LoginUser {
 }
 
 interface InitialState {
-  user: User | null;
+  user: User | {};
   isError: boolean;
   isSuccess: boolean;
   isLoading: boolean;
@@ -29,7 +30,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  user: null,
+  user: {},
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -56,10 +57,10 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.user = null;
+        state.user = {};
       })
       .addCase(logout.fulfilled, state => {
-        state.user = null
+        state.user = {}
         localStorage.removeItem('token');
         localStorage.removeItem('user');
       })
@@ -70,6 +71,7 @@ export const authSlice = createSlice({
         toast.success('Login successful', {
           position: "top-right",
         });
+        console.log("action", action)
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
@@ -82,7 +84,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.user = null;
+        state.user = {};
       });
   }
 });

@@ -10,14 +10,14 @@ const LoginAccount = () => {
 
     const { user, isLoading, isError, isSuccess, message} = useSelector((state: any) => state.auth)
 
-    useEffect(() => {
-        if (isError){
-            toast.error(message);
-        }
-        if (isSuccess || user ){
-             router.push("/");
-        }
-    }, [user, isError, isLoading, isSuccess, message]);
+    // useEffect(() => {
+    //     if (isError){
+    //         toast.error(message);
+    //     }
+    //     if (isSuccess || user ){
+    //          router.push("/");
+    //     }
+    // }, [user, isError, isLoading, isSuccess, message]);
 
     const [formData, setFormData] = useState({
         username: '',

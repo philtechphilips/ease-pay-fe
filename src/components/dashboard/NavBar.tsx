@@ -1,15 +1,21 @@
 "use client"
 import { setOpen } from '@/features/sidebar/sideBarSlice';
 import { RootState } from '@/store/store';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 const NavBar = () => {
   const openn = useSelector((state: RootState) => state.open.open);
+  const [userState, setUserState] = useState();
+  const { user } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
   const handleToggle = () => {
     dispatch(setOpen(!openn));
   };
+
+  useEffect(() => {
+    setUserState(user);
+  }, [user]);
 
   return (
     <div className='bg-[#F7F8FA] border-b border-[#d2d3d4] w-full flex items-center justify-between  h-28 px-5 md:px-10'>
@@ -27,8 +33,8 @@ const NavBar = () => {
         </div>
         <div className='flex gap-3 items-center'>
           <div className='hidden md:block'>
-            <h1 className='font-[Gilroy-Regular] text-lg font-semibold text-gray-700'>Isola Pelumi</h1>
-            <p className='font-[Gilroy-Regular] text-gray-600'>pelumiisola87@gmail.com</p>
+            <h1 className='font-[Gilroy-Regular] text-lg font-semibold text-gray-700'>{user?.name}</h1>
+            <p className='font-[Gilroy-Regular] text-gray-600'>{user?.email}</p>
           </div>
           <div className='cursor-pointer'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
