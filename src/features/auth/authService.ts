@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 
 interface UserData {
- username: string,
- password: string
+    username: string,
+    password: string
 }
 
 const API_URL = "http://localhost:8000";
@@ -28,11 +28,9 @@ const login = async (userData: UserData): Promise<any> => {
     return response.data;
 };
 
-const logout = async (): Promise<void> => {
-    if (typeof window !== 'undefined') {
-        localStorage.removeItem("user");
-    }
-};
+const logout = () => {
+    localStorage.removeItem('user')
+}
 
 const authService = {
     register,
