@@ -9,7 +9,7 @@ export default function Dashboard() {
   const user = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
-    {!(user && user?.companyName && user?.companyLogo) && (
+    {!(user) && (
       toast.error('Complete Your Profile in The Settings Page!',  {
         duration: 6000,})
     )}

@@ -10,14 +10,9 @@ const LoginAccount = () => {
 
     const { user, isLoading, isError, isSuccess, message } = useSelector((state: any) => state.auth)
 
-    // useEffect(() => {
-    //     if (isError){
-    //         toast.error(message);
-    //     }
-    //     if (isSuccess || user ){
-    //          router.push("/");
-    //     }
-    // }, [user, isError, isLoading, isSuccess, message]);
+    useEffect(() => {
+        if (user) router.push("/dashboard")
+    }, [user]);
 
     const [formData, setFormData] = useState({
         username: '',
@@ -43,6 +38,10 @@ const LoginAccount = () => {
             }
 
             dispatch(login(userData))
+            if (isSuccess && message) {
+                toast.success(message)
+            }
+            if (isError && message) toast.error(message)
         }
     };
 
@@ -60,7 +59,9 @@ const LoginAccount = () => {
                     <input type="password" value={password} name='password' onChange={onChange} className="outline-none py-2 text-sm px-2 border border-gray-300 focus:border-[#006FEE] focus:border rounded-md" placeholder="Enter Your Password"></input>
                 </div>
 
-                <button className="bg-[#006FEE] font-[Gilroy-Regular] font-semibold rounded-lg py-[10px] text-white">Sign In</button>
+                <button className="bg-[#006FEE] font-[Gilroy-Regular] font-semibold rounded-lg py-[10px] text-white">
+                    {isLoading ? "Submitting..." : "Sign In"}
+                </button>
             </form>
         </div>
     )

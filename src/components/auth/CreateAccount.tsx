@@ -14,6 +14,10 @@ const CreateAccount = () => {
         (state: any) => state.auth
     );
 
+    useEffect(() => {
+        if (user) router.push("/dashboard")
+    }, [user]);
+
     const [formData, setFormData] = useState({
         fullName: "",
         username: "",
@@ -107,7 +111,6 @@ const CreateAccount = () => {
                     {isLoading ? "Submitting.." : "Create Account"}
                 </button>
             </form>
-            <Toaster />
         </div>
     );
 };

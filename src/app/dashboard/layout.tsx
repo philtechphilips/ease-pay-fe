@@ -1,5 +1,4 @@
 import { ReduxProvider } from "@/redux/provider";
-import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "@/components/dashboard/Sidebar";
 import NavBar from "@/components/dashboard/NavBar";
 

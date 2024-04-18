@@ -1,6 +1,7 @@
 "use client"
 import Navbar from "@/components/Navbar";
 import LoginAccount from "@/components/auth/LoginAccount";
+import { Toaster } from "react-hot-toast";
 
 const page = () => {
     return (
@@ -12,6 +13,7 @@ const page = () => {
                     <LoginAccount />
                 </div>
             </div>
+            <Toaster />
         </>
     )
 }

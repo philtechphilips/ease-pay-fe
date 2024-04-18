@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import CreateAccount from "@/components/auth/CreateAccount";
+import { Toaster } from "react-hot-toast";
 
 const page = () => {
     return (
@@ -11,6 +12,7 @@ const page = () => {
                     <CreateAccount />
                 </div>
             </div>
+            <Toaster />
         </>
     )
 }
