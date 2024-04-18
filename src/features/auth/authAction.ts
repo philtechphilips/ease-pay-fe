@@ -11,7 +11,7 @@ interface User {
     companyLogo: string
   }
   
-  type RegisterUser = Pick<User, 'email' | 'username' | 'fullName' | 'password' | 'phone'>
+  type RegisterUser = Pick<User, 'email' | 'username' | 'password' | 'phone'>
   
   interface LoginUser {
     username: string,
