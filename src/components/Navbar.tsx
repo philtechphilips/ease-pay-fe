@@ -14,8 +14,6 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const router = useRouter();
 
-    console.log(user)
-
     useEffect(() => {
         setUserState(user);
     }, [user])
@@ -39,12 +37,11 @@ const Navbar = () => {
                 </ul>
 
                 <i className="ri-menu-2-fill text-white text-3xl md:hidden flex" onClick={toggleNavBar}></i>
-                {userState ? (
+                {user ? (
                     <Link href="/dashboard" className="text-white font-[Urbanist] hidden md:flex bg-[#006FEE] px-6 py-3 rounded-md">Dashboard</Link>
                 ) : (
                     <Link href="/create-account" className="text-white font-[Urbanist] hidden md:flex bg-[#006FEE] px-6 py-3 rounded-md">Get Started</Link>
                 )}
-
             </div>
 
             {/* Mobile Menu */}
