@@ -2,6 +2,14 @@ import Navbar from "@/components/Navbar";
 import CreateAccount from "@/components/auth/CreateAccount";
 import { Toaster } from "react-hot-toast";
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Easepay | Online Invoice for SMEs',
+};
+
+
+
 const page = () => {
     return (
         <>

@@ -2,6 +2,13 @@ import { ReduxProvider } from "@/redux/provider";
 import Sidebar from "@/components/dashboard/Sidebar";
 import NavBar from "@/components/dashboard/NavBar";
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Easepay | Online Invoice for SMEs',
+};
+
+
 
 export default function DashboardLayout({
   children,

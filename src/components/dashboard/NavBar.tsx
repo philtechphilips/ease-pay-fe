@@ -33,7 +33,7 @@ const NavBar = () => {
         </div>
         <div className='flex gap-3 items-center'>
           <div className='hidden md:block'>
-            <h1 className='font-[Gilroy-Regular] text-lg font-semibold text-gray-700'>{user?.name}</h1>
+            <h1 className='font-[Gilroy-Regular] text-lg font-semibold text-gray-700'>{user?.username}</h1>
             <p className='font-[Gilroy-Regular] text-gray-600'>{user?.email}</p>
           </div>
           <div className='cursor-pointer'>
